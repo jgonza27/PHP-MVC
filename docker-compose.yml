@@ -1,0 +1,39 @@
+services:
+  php:
+    image: bitnamilegacy/php-fpm
+    volumes:
+      - ./app:/app
+      - ./custom.ini:/usr/local/etc/php/conf.d/custom.ini
+
+  apache:
+    image: httpd:2.4
+    ports:
+      - "8080:80"
+    volumes:
+      - ./app:/app
+      - ./apache-custom/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro
+      - ./apache-custom/myapp.conf:/usr/local/apache2/conf/extra/myapp.conf:ro
+    depends_on:
+      - php
+
+  mariadb:
+    image: mariadb:10.6
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: pruebas
+      MYSQL_USER: user
+      MYSQL_PASSWORD: 1234
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8000:80"
+    environment:
+      PMA_HOST: mariadb
+    depends_on:
+      - mariadb
+
+volumes:
+  mariadb_data:
