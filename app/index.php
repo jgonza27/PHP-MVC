@@ -1,14 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>HOLA SOY JESUS</h1><?php echo date("Y-m-d"); ?>
+<?php
+require_once __DIR__ . '/models/Database.php';
+require_once __DIR__ . '/models/Usuarios.php';
 
-  
-    
-</body> 
-</html>
+$action = trim($_GET['action'] ?? '') ?: 'list';
+
+switch ($action) {
+    case 'list':
+        $usuarios = Usuarios::getAll();
+        include __DIR__ . '/views/list.php';
+        break;
+    default:
+        http_response_code(404);
+        echo 'Acción no soportada';
+}
