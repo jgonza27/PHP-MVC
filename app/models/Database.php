@@ -6,7 +6,7 @@ class Database {
     public static function getConnection(){
         if (self::$pdo === null) {
             $host = 'mariadb';
-            $db   = 'usuarios';  
+            $db   = 'PHP';  
             $user = 'root';
             $pass = '1234';
             $charset = 'utf8mb4';

@@ -2,7 +2,11 @@
 require_once __DIR__ . '/models/Database.php';
 require_once __DIR__ . '/models/Usuarios.php';
 
-$action = trim($_GET['action'] ?? '') ?: 'list';
+$action = $_GET['action'] ?? 'list';        
+
+if ($action == null){
+    $action = "list";
+}
 
 switch ($action) {
     case 'list':

@@ -1,9 +1,11 @@
 services:
   php:
     image: bitnamilegacy/php-fpm
+    environment:
+      - PHP_OPCACHE_ENABLE=0        
     volumes:
       - ./app:/app
-      - ./custom.ini:/usr/local/etc/php/conf.d/custom.ini
+      - ./custom.ini:/opt/bitnami/php/etc/conf.d/zzz-custom.ini
 
   apache:
     image: httpd:2.4

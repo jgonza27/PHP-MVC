@@ -15,7 +15,7 @@ class Usuarios {
     public static function get(int $id){
         $pdo = Database::getConnection();
         $stmt = $pdo->prepare("SELECT id, nombre, email, password FROM usuarios WHERE id = ?");
-        $stmt->execute([$id]);
+        $stmt->execute([$id]); 
         return $stmt->fetch();
     }
 
