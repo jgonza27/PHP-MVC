@@ -20,15 +20,17 @@ class Usuarios {
     }
 
     // CREAR
-    public static function insert(string $nombre, string $email, string $password){
+   public static function insert(string $nombre, string $email, string $password) {
+    try {
         $pdo = Database::getConnection();
         $stmt = $pdo->prepare("INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)");
         $stmt->execute([$nombre, $email, $password]);
-
-
         return (int)$pdo->lastInsertId();
+    } catch (PDOException $e) {
+        error_log("Error al insertar usuario: " . $e->getMessage());
+        return false;
     }
-
+}
     // ACTUALIZAR
     public static function update(int $id, string $nombre, string $email, string $password){
         $pdo = Database::getConnection();
