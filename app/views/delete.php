@@ -9,7 +9,7 @@
 
 <form method="get" action="index.php">
     <input type="hidden" name="action" value="delete">
-    <input type="number" name="id">
+    <input type="number" name="id" placeholder="id">
     
     <button type="submit">Eliminar</button>
 </form>

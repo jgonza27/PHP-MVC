@@ -9,10 +9,10 @@
 
 <form method="get" action="index.php">
     <input type="hidden" name="action" value="update">
-    <input type="number" name="id">
-    <input type="text" name="nombre">
-    <input type="text" name="email">
-    <input type="text" name="password">
+    <input type="number" name="id" placeholder="id">
+    <input type="text" name="nombre" placeholder="nombre">
+    <input type="text" name="email" placeholder="email">
+    <input type="text" name="password" placeholder="password">
     <button type="submit">Actualizar</button>
 </form>
     

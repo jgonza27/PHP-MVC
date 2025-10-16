@@ -59,5 +59,27 @@ class Usuarios {
         $stmt->execute([$id]);
     }
 
+
+    public static function validarUsuario(string $nombre , string $password){
+
+        try {
+    $pdo = Database::getConnection();
+
+    $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE nombre = ? AND password = ? ");
+
+    $stmt->execute([$nombre,$password]);
+    $resultado = $stmt->fetch();
+
+    return $resultado ? true : false;
+
+
+        } catch (\Throwable $th) {
+            return false;
+        }
+
+
+    
+    }
+
     
 }

@@ -7,11 +7,12 @@
 </head>
 <body>
 
-<form method="get" action="index.php">
-    <input type="hidden" name="action" value="login">
+<h1>LOGIN</h1>
 
-    <input type="text" name="usuario">
-    <input type="text" name="password">
+<form method="get" action="index.php">
+
+    <input type="text" name="nombre" placeholder="nombre">
+    <input type="text" name="password" placeholder="password">
     <button type="submit">Login</button>
 </form>
     

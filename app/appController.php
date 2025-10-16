@@ -1,22 +1,43 @@
 <?php
-require_once __DIR__ . '/models/Database.php';
-require_once __DIR__ . '/models/Usuarios.php';
 
-$action = $_GET['action'] ?? 'list';        
+require("models/Database.php");
+require("models/Usuarios.php");
 
-if ($action == null){
-    $action = "list";
+
+class AppController {
+
+function login() {
+
+    if (!isset($_GET['nombre']) || !isset($_GET['password'])) {
+        include("views/login.php");
+        return; 
+    }
+
+    $nombre = $_GET['nombre'];
+    $password = $_GET['password'];
+
+    $resultado = Usuarios::validarUsuario($nombre, $password);
+
+    if ($resultado) {
+        $_SESSION['usuario'] = $nombre;
+        header("Location: index.php"); 
+        exit;
+    } else {
+        echo "Credenciales incorrectas";
+    }
 }
 
-switch ($action) {
-    case 'list':
-        $usuarios = Usuarios::getAll();
-        include __DIR__ . '/views/list.php';
-        break;
 
+    public function listar(){
+       $usuarios = Usuarios::getAll();
+        include ("views/list.php");
 
-    case 'get':
-      $id = $_GET['id'];
+     }
+
+     
+     
+     public function listarId(){
+        $id = $_GET['id'];
       if ($id === null) {
         echo "Falta el parámetro 'id' en la URL.";
         exit;
@@ -25,13 +46,16 @@ switch ($action) {
       if (!$usuario) {
         echo "No se encontró el usuario con ID $id.";
     } else {
-        include __DIR__ . '/views/idList.php';
+        include ("views/idList.php");
     }
-    break;
+
+     }
 
 
-    case 'insert':
-        include __DIR__ . '/views/insert.php';
+
+
+     public function insert(){
+        include ("views/insert.php");
         $nombre = $_GET['nombre'];
         $email = $_GET['email'];
         $password = $_GET['password'];
@@ -44,11 +68,14 @@ switch ($action) {
     } else {
         echo "Se ha insertado correctamente";
     }
-        break;
 
-        case 'update' :
-        
-        include __DIR__ . '/views/update.php';
+     }
+
+
+
+
+     public function update(){
+         include ("views/update.php");
         $id = $_GET['id'];
         $nombre = $_GET['nombre'];
         $email = $_GET['email'];
@@ -62,25 +89,25 @@ switch ($action) {
         } else {
            echo "No ha actualizado correctamente";
        }
+    }
 
-       break;
 
-       case 'delete' :
-        
-        include __DIR__ . '/views/delete.php';
+
+      
+    public function delete(){
+         include ("views/delete.php");
         $id = $_GET['id'];
         
         if ($id == null) {
         exit;
         }
         Usuarios::delete($id);
+    }
+      
+     }
+
        
 
-       break;
-
-
-    default:
-        http_response_code(404);
-        echo 'Acción no soportada';
+      
         
-}
+
