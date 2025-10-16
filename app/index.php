@@ -32,15 +32,10 @@ switch ($action) {
 
     case 'insert':
         include __DIR__ . '/views/insert.php';
-        break;
-
-
-    case 'insertData':
         $nombre = $_GET['nombre'];
         $email = $_GET['email'];
         $password = $_GET['password'];
-        if ($nombre === null || $email === null || $password === null ) {
-        echo "Falta el parámetros en la URL.";
+        if ($nombre == null || $email == null || $password == null ) {
         exit;
         }
         $resultado =  Usuarios::insert($nombre, $email, $password);
@@ -49,9 +44,39 @@ switch ($action) {
     } else {
         echo "Se ha insertado correctamente";
     }
-      
-    break;
+        break;
 
+        case 'update' :
+        
+        include __DIR__ . '/views/update.php';
+        $id = $_GET['id'];
+        $nombre = $_GET['nombre'];
+        $email = $_GET['email'];
+        $password = $_GET['password'];
+        if ($id == null || $nombre == null || $email == null || $password == null ) {
+        exit;
+        }
+        $resultado =  Usuarios::update($id, $nombre, $email, $password);
+        if ($resultado) {
+            echo "Se ha actualizado correctamente";
+        } else {
+           echo "No ha actualizado correctamente";
+       }
+
+       break;
+
+       case 'delete' :
+        
+        include __DIR__ . '/views/delete.php';
+        $id = $_GET['id'];
+        
+        if ($id == null) {
+        exit;
+        }
+        Usuarios::delete($id);
+       
+
+       break;
 
 
     default:

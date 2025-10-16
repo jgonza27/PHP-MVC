@@ -33,14 +33,22 @@ class Usuarios {
 }
     // ACTUALIZAR
     public static function update(int $id, string $nombre, string $email, string $password){
-        $pdo = Database::getConnection();
-        $stmt = $pdo->prepare("UPDATE usuarios SET nombre = :nombre, email = :email, password = :password WHERE id = :id");
-            $stmt->execute([
-                ':nombre' => $nombre,
-                ':email'  => $email,
-                ':password'  => $password,
-                ':id'     => $id,
-            ]);
+        try {
+            $pdo = Database::getConnection();
+            $stmt = $pdo->prepare("UPDATE usuarios SET nombre = :nombre, email = :email, password = :password WHERE id = :id");
+                $stmt->execute([
+                    ':nombre' => $nombre,
+                    ':email'  => $email,
+                    ':password'  => $password,
+                    ':id'     => $id,
+                ]);
+
+                return true;
+        } catch (PDOException $e) {
+            error_log("Error al actualizar usuario: " . $e->getMessage());
+            return false;
+        }
+        
        
     }
 

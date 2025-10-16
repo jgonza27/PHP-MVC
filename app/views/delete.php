@@ -8,12 +8,10 @@
 <body>
 
 <form method="get" action="index.php">
-    <input type="hidden" name="action" value="insert">
-
-    <input type="text" name="nombre">
-    <input type="text" name="email">
-    <input type="text" name="password">
-    <button type="submit">Insertar</button>
+    <input type="hidden" name="action" value="delete">
+    <input type="number" name="id">
+    
+    <button type="submit">Eliminar</button>
 </form>
     
 </body>
