@@ -103,6 +103,15 @@ function login() {
         }
         Usuarios::delete($id);
     }
+
+    public function vistaLogout(){
+        include ("views/logout.php");
+    }
+
+
+    public function close(){
+        session_destroy();
+    }
       
      }
 
