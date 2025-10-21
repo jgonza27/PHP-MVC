@@ -13,7 +13,7 @@ CREATE TABLE usuarios (
 
 -- Insertar varios usuarios de ejemplo
 INSERT INTO usuarios (nombre, email, password) VALUES
-('Ana Pérez', 'ana.perez@example.com', 'clave123'),
+('admin', 'admin@example.com', 'admin'),
 ('Juan Gómez', 'juan.gomez@example.com', 'miPass456'),
 ('Lucía Torres', 'lucia.torres@example.com', 'luciaPass!'),
 ('Carlos Ramírez', 'carlos.ramirez@example.com', '1234abcd'),
