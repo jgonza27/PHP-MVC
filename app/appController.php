@@ -60,7 +60,7 @@ function login() {
         $email = $_GET['email'];
         $password = $_GET['password'];
         if ($nombre == null || $email == null || $password == null ) {
-        exit;
+        return;
         }
         $resultado =  Usuarios::insert($nombre, $email, $password);
      if (!$resultado) {
@@ -81,7 +81,7 @@ function login() {
         $email = $_GET['email'];
         $password = $_GET['password'];
         if ($id == null || $nombre == null || $email == null || $password == null ) {
-        exit;
+        return;
         }
         $resultado =  Usuarios::update($id, $nombre, $email, $password);
         if ($resultado) {
@@ -99,7 +99,7 @@ function login() {
         $id = $_GET['id'];
         
         if ($id == null) {
-        exit;
+        return;
         }
         Usuarios::delete($id);
     }
