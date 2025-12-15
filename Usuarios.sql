@@ -1,6 +1,4 @@
--- Eliminar y recrear la base de datos
-DROP DATABASE IF EXISTS PHP;
-CREATE DATABASE PHP;
+-- Usar la base de datos creada por Docker
 USE PHP;
 
 -- Crear la tabla de usuarios
@@ -14,11 +12,11 @@ CREATE TABLE usuarios (
 -- Insertar varios usuarios de ejemplo
 INSERT INTO usuarios (nombre, email, password) VALUES
 ('admin', 'admin@example.com', 'admin'),
-('Juan Gómez', 'juan.gomez@example.com', 'miPass456'),
-('Lucía Torres', 'lucia.torres@example.com', 'luciaPass!'),
+('Juan Gómez', 'juan. gomez@example.com', 'miPass456'),
+('Lucía Torres', 'lucia. torres@example.com', 'luciaPass!'),
 ('Carlos Ramírez', 'carlos.ramirez@example.com', '1234abcd'),
-('María López', 'maria.lopez@example.com', 'maria2025'),
-('Pedro Sánchez', 'pedro.sanchez@example.com', 'passPedro'),
+('María López', 'maria. lopez@example.com', 'maria2025'),
+('Pedro Sánchez', 'pedro. sanchez@example.com', 'passPedro'),
 ('Laura Díaz', 'laura.diaz@example.com', 'laura@2025'),
 ('Andrés Herrera', 'andres.herrera@example.com', 'andres123'),
 ('Sofía Morales', 'sofia.morales@example.com', 'sofiaXYZ'),

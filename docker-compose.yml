@@ -1,41 +1,32 @@
 services:
-  php:
-    image: bitnamilegacy/php-fpm
-    environment:
-      - PHP_OPCACHE_ENABLE=0        
-    volumes:
-      - ./app:/app
-      - ./custom.ini:/opt/bitnami/php/etc/conf.d/zzz-custom.ini
-
-  apache:
-    image: httpd:2.4
+  web:
+    image: php:8.2-apache
     ports:
       - "8080:80"
     volumes:
-      - ./app:/app
-      - ./apache-custom/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro
-      - ./apache-custom/myapp.conf:/usr/local/apache2/conf/extra/myapp.conf:ro
+      - ./app:/var/www/html
     depends_on:
-      - php
+      - mariadb
+    command: >
+      bash -c "docker-php-ext-install pdo pdo_mysql && apache2-foreground"
 
   mariadb:
     image: mariadb:10.6
     environment:
       MYSQL_ROOT_PASSWORD: 1234
-      MYSQL_DATABASE: pruebas
+      MYSQL_DATABASE: PHP
       MYSQL_USER: user
       MYSQL_PASSWORD: 1234
     volumes:
       - mariadb_data:/var/lib/mysql
+      - ./Usuarios.sql:/docker-entrypoint-initdb.d/Usuarios.sql
 
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin
+    image:  phpmyadmin/phpmyadmin
     ports:
       - "8000:80"
     environment:
       PMA_HOST: mariadb
-    depends_on:
-      - mariadb
 
 volumes:
   mariadb_data:
