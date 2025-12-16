@@ -6,7 +6,7 @@
 
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/jesusgonzalvezgarcia10-ux/CRUD-PHP.git
+   git clone https://github.com/jgonza27/PHP-MVC.git
    ```
 2. Accede al directorio:
    ```bash
